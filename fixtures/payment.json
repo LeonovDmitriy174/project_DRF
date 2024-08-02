@@ -1,0 +1,107 @@
+[
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$720000$vHeewnWPRCej31eKB3g9Ja$lCYXPxieeR3P85w+vp5aPRqftuE7tb1EIQHI7jaKSi0=",
+      "last_login": null,
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-08-01T12:43:59.070Z",
+      "email": "admin@admin.com",
+      "avatar": "",
+      "phone": null,
+      "city": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "123",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-08-02T07:48:42.031Z",
+      "email": "123@mail.ru",
+      "avatar": "",
+      "phone": null,
+      "city": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "date": "2024-08-02T08:15:44.120Z",
+      "course": 2,
+      "lesson": null,
+      "amount": null,
+      "payment_by_card": "card"
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "date": "2024-08-02T08:16:03.303Z",
+      "course": 1,
+      "lesson": null,
+      "amount": null,
+      "payment_by_card": "card"
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "date": "2024-08-02T08:18:28.028Z",
+      "course": null,
+      "lesson": 1,
+      "amount": null,
+      "payment_by_card": "card"
+    }
+  },
+  {
+    "model": "materials.course",
+    "pk": 1,
+    "fields": {
+      "name": "Python - Developer",
+      "img": "",
+      "description": null
+    }
+  },
+  {
+    "model": "materials.course",
+    "pk": 2,
+    "fields": {
+      "name": "JAVA - Developer",
+      "img": "",
+      "description": null
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 1,
+    "fields": {
+      "course": 1,
+      "name": "Django",
+      "img": "",
+      "description": null,
+      "url": null
+    }
+  }
+]

@@ -37,6 +37,19 @@ class User(AbstractUser):
 
 
 class Payment(models.Model):
+    CARD = "card"
+    CACHE = "cache"
+    PAYMENT_BY_CARD = {
+        CARD: "оплата по карте",
+        CACHE: "оплата наличными"
+    }
+    payment_by_card = models.CharField(
+        max_length=5,
+        verbose_name="способ оплаты",
+        help_text="введите способ оплаты",
+        choices=PAYMENT_BY_CARD,
+        default=CARD
+    )
     user = models.ForeignKey(
         User, on_delete=models.CASCADE,
         verbose_name="пользователь",
@@ -67,11 +80,9 @@ class Payment(models.Model):
         null=True,
         blank=True
     )
-    payment_by_card = models.BooleanField(
-        verbose_name="оплата картой",
-        help_text="оплата была произведена картой?",
-        default=False
-    )
+
+    def is_upperclass(self):
+        return self.payment_by_card in {self.CARD, self.CACHE}
 
     class Meta:
         verbose_name = "Платеж"
