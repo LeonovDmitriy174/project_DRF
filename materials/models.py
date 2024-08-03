@@ -1,7 +1,21 @@
 from django.db import models
 
+from users.models import User
+
+
+class Course:
+    pass
+
 
 class Course(models.Model):
+    creator = models.ForeignKey(
+        User,
+        on_delete=models.SET("создателя данного курса больше не существует"),
+        verbose_name="Создатель",
+        help_text="Введите создателя курса",
+        null=True,
+        blank=True,
+    )
     name = models.CharField(
         max_length=255,
         verbose_name="Название курса",
@@ -27,6 +41,14 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
+    creator = models.ForeignKey(
+        User,
+        on_delete=models.SET("создателя данного урока больше не существует"),
+        verbose_name="Создатель",
+        help_text="Введите создателя урока",
+        null=True,
+        blank=True,
+    )
     course = models.ForeignKey(
         Course,
         on_delete=models.CASCADE,
@@ -62,3 +84,59 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = "Урок"
         verbose_name_plural = "Уроки"
+
+
+class Payment(models.Model):
+    CARD = "card"
+    CACHE = "cache"
+    PAYMENT_BY_CARD = {
+        CARD: "оплата по карте",
+        CACHE: "оплата наличными"
+    }
+    payment_by_card = models.CharField(
+        max_length=5,
+        verbose_name="способ оплаты",
+        help_text="введите способ оплаты",
+        choices=PAYMENT_BY_CARD,
+        default=CARD
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="пользователь",
+        help_text="введите пользователя"
+    )
+    date = models.DateTimeField(
+        verbose_name="дата оплаты",
+        help_text="введите дату оплаты",
+        auto_now_add=True
+    )
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.SET('Данного курса больше не существует'),
+        verbose_name="оплаченный курс",
+        help_text="введите оплаченный курс",
+        null=True,
+        blank=True
+    )
+    lesson = models.ForeignKey(
+        Lesson,
+        on_delete=models.SET('Данного урока больше не существует'),
+        verbose_name="оплаченный курс",
+        help_text="введите оплаченный курс",
+        null=True,
+        blank=True
+    )
+    amount = models.IntegerField(
+        verbose_name="сумма оплаты",
+        help_text="введите сумму оплаты",
+        null=True,
+        blank=True
+    )
+
+    def is_upperclass(self):
+        return self.payment_by_card in {self.CARD, self.CACHE}
+
+    class Meta:
+        verbose_name = "Платеж"
+        verbose_name_plural = "Платежи"
