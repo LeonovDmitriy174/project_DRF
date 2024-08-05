@@ -7,5 +7,7 @@ class UrlValidator:
 
     def __call__(self, value):
         url = value.get(self.field)
-        if url and not url.startswith('https://www.youtube.com/'):
-            raise ValidationError(f"{self.field} must start with 'https://www.youtube.com/'")
+        if url and not url.startswith("https://www.youtube.com/"):
+            raise ValidationError(
+                f"{self.field} must start with 'https://www.youtube.com/'"
+            )

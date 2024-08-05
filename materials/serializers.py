@@ -7,18 +7,18 @@ from materials.validators import UrlValidator
 class CourseSerializer(ModelSerializer):
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = "__all__"
 
 
 class LessonSerializer(ModelSerializer):
     class Meta:
         model = Lesson
-        fields = '__all__'
-        validators = [UrlValidator(field='url')]
+        fields = "__all__"
+        validators = [UrlValidator(field="url")]
 
 
 class CourseDetailsSerializer(ModelSerializer):
-    lessons = LessonSerializer(read_only=True, many=True, source='lesson_set')
+    lessons = LessonSerializer(read_only=True, many=True, source="lesson_set")
     lessons_count = SerializerMethodField()
     subscription = SerializerMethodField()
 
@@ -26,7 +26,7 @@ class CourseDetailsSerializer(ModelSerializer):
         return obj.lesson_set.count()
 
     def get_subscription(self, instance):
-        request = self.context.get('request')
+        request = self.context.get("request")
         user = None
         if request:
             user = request.user
@@ -34,16 +34,16 @@ class CourseDetailsSerializer(ModelSerializer):
 
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = "__all__"
 
 
 class PaymentSerializer(ModelSerializer):
     class Meta:
         model = Payment
-        fields = '__all__'
+        fields = "__all__"
 
 
 class SubscriptionSerializer(ModelSerializer):
     class Meta:
         model = Subscription
-        fields = '__all__'
+        fields = "__all__"

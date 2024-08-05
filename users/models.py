@@ -30,7 +30,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     def add_to_moderators_group(self):
-        moderators_group, _ = Group.objects.get_or_create(name='moderator')
+        moderators_group, _ = Group.objects.get_or_create(name="moderator")
         self.groups.add(moderators_group)
 
     class Meta:
