@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -28,6 +28,10 @@ class User(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    def add_to_moderators_group(self):
+        moderators_group, _ = Group.objects.get_or_create(name='moderator')
+        self.groups.add(moderators_group)
 
     class Meta:
         verbose_name = "Пользователь"

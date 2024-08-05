@@ -1,5 +1,6 @@
 from django.db import models
 
+from config.settings import AUTH_USER_MODEL
 from users.models import User
 
 
@@ -140,3 +141,22 @@ class Payment(models.Model):
     class Meta:
         verbose_name = "Платеж"
         verbose_name_plural = "Платежи"
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(
+        to=AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="пользователь",
+        help_text="введите пользователя"
+    )
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.SET('Данного курса больше не существует'),
+        verbose_name="курс",
+        help_text="введите курс"
+    )
+
+    class Meta:
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"

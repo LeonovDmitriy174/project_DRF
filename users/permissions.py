@@ -9,7 +9,7 @@ class IsModerator(BasePermission):
 
 
 class IsMyMaterials(BasePermission):
-    message = "Для доступа к данной информации, необходимо преобрести доступ"
+    message = "Для доступа к данной информации, необходимо приобрести доступ"
 
     def has_object_permission(self, request, view, obj):
         return request.user == obj.creator
