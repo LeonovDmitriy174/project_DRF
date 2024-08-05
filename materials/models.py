@@ -147,7 +147,7 @@ class Subscription(models.Model):
     )
     course = models.ForeignKey(
         Course,
-        on_delete=models.SET("Данного курса больше не существует"),
+        on_delete=models.CASCADE,
         verbose_name="курс",
         help_text="введите курс",
     )
@@ -155,3 +155,4 @@ class Subscription(models.Model):
     class Meta:
         verbose_name = "Подписка"
         verbose_name_plural = "Подписки"
+        unique_together = (("user", "course"),)

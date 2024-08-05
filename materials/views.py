@@ -1,6 +1,9 @@
+from rest_framework import status, serializers
+from rest_framework.exceptions import ValidationError
 from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_201_CREATED
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import (
@@ -8,9 +11,7 @@ from rest_framework.generics import (
     ListAPIView,
     RetrieveAPIView,
     UpdateAPIView,
-    DestroyAPIView,
-    get_object_or_404,
-)
+    DestroyAPIView, get_object_or_404)
 
 from materials.models import Course, Lesson, Payment, Subscription
 from materials.paginators import BasePagination
@@ -21,6 +22,7 @@ from materials.serializers import (
     PaymentSerializer,
     SubscriptionSerializer,
 )
+from users.models import User
 from users.permissions import IsModerator, IsMyMaterials
 
 
@@ -111,18 +113,25 @@ class PaymentDestroyAPIView(DestroyAPIView):
 
 
 class SubscriptionAPIView(APIView):
-    serializer_class = SubscriptionSerializer
-    permission_classes = [IsMyMaterials]
+    permission_classes = [IsAuthenticated]
 
-    def post(self, *args, **kwargs):
-        user = self.request.user
-        course_id = self.request.data.get("course")
-        course_item = get_object_or_404(Course, pk=course_id)
-        subs_item = Subscription.objects.filter(user=user, course=course_item)
+    def post(self, request, *args, **kwargs):
+        serializer = SubscriptionSerializer(
+            data=request.data, context={'request': request}
+        )
+        try:
+            serializer.is_valid(raise_exception=True)
+        except ValidationError:
+            user = self.request.user
+            course_id = self.request.data.get("course")
+            course = get_object_or_404(Course, pk=course_id)
+        else:
+            course = serializer.validated_data['course']
+            user = serializer.validated_data['user']
+        subs_item = Subscription.objects.filter(user=user, course=course)
         if subs_item.exists():
             subs_item.delete()
-            message = "Подписка удалена"
+            return Response(status=status.HTTP_204_NO_CONTENT)
         else:
-            Subscription.objects.create(user=user, course=course_item)
-            message = "Подписка добавлена"
-        return Response({"message": message})
+            Subscription.objects.create(user=user, course=course)
+            return Response(status=status.HTTP_201_CREATED)

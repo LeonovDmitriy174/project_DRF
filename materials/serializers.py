@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework.serializers import ModelSerializer, SerializerMethodField, HiddenField, CurrentUserDefault
 
 from materials.models import Course, Lesson, Payment, Subscription
 from materials.validators import UrlValidator
@@ -44,6 +44,8 @@ class PaymentSerializer(ModelSerializer):
 
 
 class SubscriptionSerializer(ModelSerializer):
+    user = HiddenField(default=CurrentUserDefault())
+
     class Meta:
         model = Subscription
         fields = "__all__"
