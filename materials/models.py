@@ -4,14 +4,10 @@ from config.settings import AUTH_USER_MODEL
 from users.models import User
 
 
-class Course:
-    pass
-
-
 class Course(models.Model):
     creator = models.ForeignKey(
         User,
-        on_delete=models.SET("создателя данного курса больше не существует"),
+        on_delete=models.SET_NULL,
         verbose_name="Создатель",
         help_text="Введите создателя курса",
         null=True,
@@ -44,7 +40,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     creator = models.ForeignKey(
         User,
-        on_delete=models.SET("создателя данного урока больше не существует"),
+        on_delete=models.SET_NULL,
         verbose_name="Создатель",
         help_text="Введите создателя урока",
         null=True,
@@ -109,7 +105,7 @@ class Payment(models.Model):
     )
     course = models.ForeignKey(
         Course,
-        on_delete=models.SET("Данного курса больше не существует"),
+        on_delete=models.SET_NULL,
         verbose_name="оплаченный курс",
         help_text="введите оплаченный курс",
         null=True,
@@ -117,7 +113,7 @@ class Payment(models.Model):
     )
     lesson = models.ForeignKey(
         Lesson,
-        on_delete=models.SET("Данного урока больше не существует"),
+        on_delete=models.SET_NULL,
         verbose_name="оплаченный курс",
         help_text="введите оплаченный курс",
         null=True,
@@ -155,4 +151,3 @@ class Subscription(models.Model):
     class Meta:
         verbose_name = "Подписка"
         verbose_name_plural = "Подписки"
-        unique_together = (("user", "course"),)

@@ -11,7 +11,9 @@ from rest_framework.generics import (
     ListAPIView,
     RetrieveAPIView,
     UpdateAPIView,
-    DestroyAPIView, get_object_or_404)
+    DestroyAPIView,
+    get_object_or_404,
+)
 
 from materials.models import Course, Lesson, Payment, Subscription
 from materials.paginators import BasePagination
@@ -37,14 +39,11 @@ class CourseViewSet(ModelViewSet):
 
     def get_permissions(self):
         if self.action == "create":
-            self.permission_classes = (~IsModerator,)
+            self.permission_classes = [~IsModerator]
         elif self.action == "destroy":
-            self.permission_classes = (
-                ~IsModerator,
-                IsMyMaterials,
-            )
+            self.permission_classes = [~IsModerator, IsMyMaterials]
         elif self.action in ["update", "retrieve"]:
-            self.permission_classes = (IsModerator | IsMyMaterials,)
+            self.permission_classes = [IsModerator | IsMyMaterials]
         return super().get_permissions()
 
     def perform_create(self, serializer):
@@ -81,7 +80,7 @@ class LessonUpdateAPIView(UpdateAPIView):
 class LessonDestroyAPIView(DestroyAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (~IsModerator,)
+    permission_classes = [~IsModerator]
 
 
 class PaymentListAPIView(ListAPIView):
@@ -114,24 +113,23 @@ class PaymentDestroyAPIView(DestroyAPIView):
 
 class SubscriptionAPIView(APIView):
     permission_classes = [IsAuthenticated]
+    serializer_class = SubscriptionSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = SubscriptionSerializer(
-            data=request.data, context={'request': request}
+            data=request.data, context={"request": request}
         )
+        serializer.is_valid(raise_exception=True)
+        course = serializer.validated_data["course"]
+        user = serializer.validated_data["user"]
+
         try:
-            serializer.is_valid(raise_exception=True)
-        except ValidationError:
-            user = self.request.user
-            course_id = self.request.data.get("course")
-            course = get_object_or_404(Course, pk=course_id)
-        else:
-            course = serializer.validated_data['course']
-            user = serializer.validated_data['user']
-        subs_item = Subscription.objects.filter(user=user, course=course)
-        if subs_item.exists():
-            subs_item.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
+            subscription = Subscription.objects.get(user=user, course=course)
+        except Subscription.DoesNotExist:
             Subscription.objects.create(user=user, course=course)
-            return Response(status=status.HTTP_201_CREATED)
+            status_code = status.HTTP_201_CREATED
+        else:
+            subscription.delete()
+            status_code = status.HTTP_204_NO_CONTENT
+
+        return Response(status=status_code)

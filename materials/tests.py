@@ -90,21 +90,30 @@ class LessonTestCase(APITestCase):
 
 
 class SubscriptionTestCase(APITestCase):
+    url = reverse("materials:subscription_create")
 
     def setUp(self):
         self.user = User.objects.create(email="test@test.com")
-        self.course = Course.objects.create(name="Test Course", creator=self.user)
+        another_user = User.objects.create(email="another_user@test.com")
+        self.course = Course.objects.create(name="Test Course", creator=another_user)
         self.client.force_authenticate(user=self.user)
 
-    def test_subscribe(self):
-        url = reverse("materials:subscription_create")
-        data = {"course": self.course.pk}
-        response = self.client.post(url, data)
+    def test_anonymous_user_failed_to_subscribe_on_course(self):
+        self.client.logout()
+        response = self.client.post(self.url, data={"course": self.course.pk})
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_user_failed_to_subscribe_on_not_existing_course(self):
+        self.client.logout()
+        self.user.subscription_set.create(course=self.course)
+        response = self.client.post(self.url, data={"course": self.course.pk})
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_user_have_to_subscribe_on_course(self):
+        response = self.client.post(self.url, data={"course": self.course.pk})
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-    def test_unsubscribe(self):
-        url = reverse("materials:subscription_create")
-        data = {"course": self.course.pk}
-        Subscription.objects.create(course=self.course, user=self.user)
-        response = self.client.post(url, data)
+    def test_user_have_to_unsubscribe_on_course(self):
+        self.user.subscription_set.create(course=self.course)
+        response = self.client.post(self.url, data={"course": self.course.pk})
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

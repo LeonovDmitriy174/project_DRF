@@ -1,4 +1,9 @@
-from rest_framework.serializers import ModelSerializer, SerializerMethodField, HiddenField, CurrentUserDefault
+from rest_framework.serializers import (
+    ModelSerializer,
+    SerializerMethodField,
+    HiddenField,
+    CurrentUserDefault,
+)
 
 from materials.models import Course, Lesson, Payment, Subscription
 from materials.validators import UrlValidator
