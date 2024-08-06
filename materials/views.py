@@ -24,6 +24,11 @@ from materials.serializers import (
     PaymentSerializer,
     SubscriptionSerializer,
 )
+from materials.services import (
+    create_stripe_prise,
+    create_stripe_session,
+    create_stripe_product,
+)
 from users.models import User
 from users.permissions import IsModerator, IsMyMaterials
 
@@ -94,6 +99,15 @@ class PaymentListAPIView(ListAPIView):
 class PaymentCreateAPIView(CreateAPIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
+
+    def perform_create(self, serializer):
+        payment = serializer.save(user=self.request.user)
+        product_id = create_stripe_product(payment)
+        price = create_stripe_prise(payment.amount)
+        session_id, payment_link = create_stripe_session(price)
+        payment.product_id = product_id
+        payment.link = payment_link
+        payment.session_id = session_id
 
 
 class PaymentUpdateAPIView(UpdateAPIView):

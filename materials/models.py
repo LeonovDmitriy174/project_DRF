@@ -99,6 +99,8 @@ class Payment(models.Model):
         on_delete=models.CASCADE,
         verbose_name="пользователь",
         help_text="введите пользователя",
+        blank=True,
+        null=True,
     )
     date = models.DateTimeField(
         verbose_name="дата оплаты", help_text="введите дату оплаты", auto_now_add=True
@@ -119,9 +121,27 @@ class Payment(models.Model):
         null=True,
         blank=True,
     )
-    amount = models.IntegerField(
-        verbose_name="сумма оплаты",
-        help_text="введите сумму оплаты",
+    amount = models.PositiveIntegerField(
+        verbose_name="сумма оплаты", help_text="введите сумму оплаты", default=0
+    )
+    session_id = models.CharField(
+        max_length=255,
+        verbose_name="идентификатор сессии",
+        help_text="введите идентификатор сессии",
+        null=True,
+        blank=True,
+    )
+    link = models.URLField(
+        max_length=400,
+        verbose_name="ссылка на оплату",
+        help_text="введите ссылку на оплату",
+        null=True,
+        blank=True,
+    )
+    product_id = models.CharField(
+        max_length=255,
+        verbose_name="идентификатор продукта",
+        help_text="введите идентификатор продукта",
         null=True,
         blank=True,
     )
