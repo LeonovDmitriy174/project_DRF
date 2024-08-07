@@ -14,7 +14,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -26,6 +25,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "django_filters",
     "drf_yasg",
+    "django_celery_beat",
     "users",
     "materials",
 ]
@@ -60,7 +60,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -81,7 +80,6 @@ DATABASES = {
     }
 }
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -97,7 +95,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
@@ -105,7 +102,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 STATIC_URL = "static/"
 
@@ -122,3 +118,36 @@ SIMPLE_JWT = {
 }
 
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
+
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
+EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL")
+
+SERVER_EMAIL = EMAIL_HOST_USER
+FAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# URL-адрес брокера сообщений
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+
+# URL-адрес брокера результатов, также Redis
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+
+# Часовой пояс для работы Celery
+CELERY_TIMEZONE = TIME_ZONE
+
+# Флаг отслеживания выполнения задач
+CELERY_TASK_TRACK_STARTED = os.getenv("CELERY_TASK_TRACK_STARTED")
+
+# Максимальное время на выполнение задачи
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+# Настройки для Celery
+# CELERY_BEAT_SCHEDULE = {
+#     'task-name': {
+#         'task': 'myapp.tasks.my_task',  # Путь к задаче
+#         'schedule': timedelta(minutes=10),  # Расписание выполнения задачи (например, каждые 10 минут)
+#     },
+# }

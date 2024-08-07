@@ -1,9 +1,9 @@
-from rest_framework import status, serializers
-from rest_framework.exceptions import ValidationError
+from datetime import datetime, timezone
+
+from rest_framework import status
 from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_201_CREATED
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import (
@@ -12,7 +12,6 @@ from rest_framework.generics import (
     RetrieveAPIView,
     UpdateAPIView,
     DestroyAPIView,
-    get_object_or_404,
 )
 
 from materials.models import Course, Lesson, Payment, Subscription
@@ -29,8 +28,8 @@ from materials.services import (
     create_stripe_session,
     create_stripe_product,
 )
-from users.models import User
 from users.permissions import IsModerator, IsMyMaterials
+from materials.tasks import send_update_course_mail
 
 
 class CourseViewSet(ModelViewSet):
@@ -54,6 +53,11 @@ class CourseViewSet(ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)
 
+    def perform_update(self, serializer):
+        course = serializer.save(last_update=datetime.now(timezone.utc))
+        course_id = course.id
+        send_update_course_mail.delay(course_id)
+
 
 class LessonCreateAPIView(CreateAPIView):
     queryset = Lesson.objects.all()
@@ -61,7 +65,12 @@ class LessonCreateAPIView(CreateAPIView):
     permission_classes = [~IsModerator]
 
     def perform_create(self, serializer):
-        serializer.save(creator=self.request.user)
+        lesson = serializer.save(creator=self.request.user)
+        courses = Course.objects.all().filter(pk=lesson.course_id)
+        for course in courses:
+            print(course)
+            course.last_update = datetime.now(timezone.utc)
+            course.save()
 
 
 class LessonListAPIView(ListAPIView):
@@ -80,6 +89,13 @@ class LessonUpdateAPIView(UpdateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = [IsModerator]
+
+    def perform_update(self, serializer):
+        lesson = serializer.save(last_update=datetime.now(timezone.utc))
+        courses = Course.objects.all().filter(pk=lesson.course_id)
+        for course in courses:
+            course.last_update = datetime.now(timezone.utc)
+            course.save()
 
 
 class LessonDestroyAPIView(DestroyAPIView):
@@ -108,6 +124,7 @@ class PaymentCreateAPIView(CreateAPIView):
         payment.product_id = product_id
         payment.link = payment_link
         payment.session_id = session_id
+        payment.save()
 
 
 class PaymentUpdateAPIView(UpdateAPIView):

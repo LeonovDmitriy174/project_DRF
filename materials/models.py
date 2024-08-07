@@ -31,6 +31,13 @@ class Course(models.Model):
         verbose_name="Описание курса",
         help_text="Введите описание курса",
     )
+    last_update = models.DateTimeField(
+        verbose_name="Последнее обновление",
+        help_text="введите дату последнего обновления",
+        auto_now=True,
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = "Курс"
@@ -76,6 +83,13 @@ class Lesson(models.Model):
         null=True,
         verbose_name="Ссылка на урок",
         help_text="Введите ссылку на урок",
+    )
+    last_update = models.DateTimeField(
+        verbose_name="Последнее обновление",
+        help_text="введите дату последнего обновления",
+        auto_now=True,
+        null=True,
+        blank=True,
     )
 
     class Meta:
@@ -166,6 +180,13 @@ class Subscription(models.Model):
         on_delete=models.CASCADE,
         verbose_name="курс",
         help_text="введите курс",
+    )
+    status = models.BooleanField(
+        default=True,
+        verbose_name="cтатус подписки",
+        help_text="введите статус подписки",
+        null=True,
+        blank=True,
     )
 
     class Meta:

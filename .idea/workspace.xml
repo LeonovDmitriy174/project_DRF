@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="552d3978-5b32-46f5-8d3a-063f8154bca2" name="Changes" comment="fix SubscriptionAPIView">
+      <change afterPath="$PROJECT_DIR$/config/celery.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/materials/tasks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/materials/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/materials/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/materials/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/materials/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/materials/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/materials/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/materials/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/materials/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2k3qWCJgnJHII6fFVY9ozf6b8GV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Django Server.project_DRF_.executor": "Run",
+    "Django tests.Test: materials.tests.CourseTestCase.executor": "Run",
+    "Django tests.Test: materials.tests.CourseTestCase.test_course_delete.executor": "Run",
+    "Django tests.Test: materials.tests.CourseTestCase.test_course_retrieve.executor": "Run",
+    "Django tests.Test: materials.tests.LessonTestCase.executor": "Run",
+    "Django tests.Test: materials.tests.LessonTestCase.test_lesson_create.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Django Server.project_DRF_">
+    <configuration name="Test: materials.tests.CourseTestCase" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="project_DRF_" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="materials.tests.CourseTestCase" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: materials.tests.CourseTestCase.test_course_delete" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="project_DRF_" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="materials.tests.CourseTestCase.test_course_delete" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: materials.tests.CourseTestCase.test_course_retrieve" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="project_DRF_" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="materials.tests.CourseTestCase.test_course_retrieve" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: materials.tests.LessonTestCase" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="project_DRF_" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="materials.tests.LessonTestCase" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: materials.tests.LessonTestCase.test_lesson_create" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="project_DRF_" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="materials.tests.LessonTestCase.test_lesson_create" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="project_DRF_" type="Python.DjangoServer" factoryName="Django server">
+      <module name="project_DRF_" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="config.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Django tests.Test: materials.tests.CourseTestCase" />
+        <item itemvalue="Django tests.Test: materials.tests.CourseTestCase.test_course_delete" />
+        <item itemvalue="Django tests.Test: materials.tests.LessonTestCase.test_lesson_create" />
+        <item itemvalue="Django tests.Test: materials.tests.LessonTestCase" />
+        <item itemvalue="Django tests.Test: materials.tests.CourseTestCase.test_course_retrieve" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="552d3978-5b32-46f5-8d3a-063f8154bca2" name="Changes" comment="" />
+      <created>1722522636753</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722522636753</updated>
+      <workItem from="1722522638145" duration="26000" />
+      <workItem from="1722584329266" duration="19141000" />
+      <workItem from="1722695906101" duration="296000" />
+      <workItem from="1722754025075" duration="19000" />
+      <workItem from="1722858623505" duration="13740000" />
+      <workItem from="1722872685891" duration="1209000" />
+      <workItem from="1722879046386" duration="1260000" />
+      <workItem from="1722880322135" duration="8859000" />
+      <workItem from="1722933967126" duration="7676000" />
+      <workItem from="1722961175109" duration="1157000" />
+      <workItem from="1723016466840" duration="8106000" />
+    </task>
+    <task id="LOCAL-00001" summary="Добавил кастомную команду заполнения платежей + переработал способ оплаты">
+      <option name="closed" value="true" />
+      <created>1722596067228</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722596067229</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Homework 25.1">
+      <option name="closed" value="true" />
+      <created>1722695282566</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722695282566</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fox creator">
+      <option name="closed" value="true" />
+      <created>1722695997839</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722695997839</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Homework 25.2">
+      <option name="closed" value="true" />
+      <created>1722873812970</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722873812970</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Homework 25.2">
+      <option name="closed" value="true" />
+      <created>1722873845965</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722873845965</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix SubscriptionAPIView">
+      <option name="closed" value="true" />
+      <created>1722889170221</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1722889170221</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix SubscriptionAPIView">
+      <option name="closed" value="true" />
+      <created>1722935907557</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722935907557</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix SubscriptionAPIView">
+      <option name="closed" value="true" />
+      <created>1722962285026</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1722962285026</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Добавил кастомную команду заполнения платежей + переработал способ оплаты" />
+    <MESSAGE value="Homework 25.1" />
+    <MESSAGE value="fox creator" />
+    <MESSAGE value="Homework 25.2" />
+    <MESSAGE value="fix SubscriptionAPIView" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix SubscriptionAPIView" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/materials/tests.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/materials/tests.py</url>
+          <line>84</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/project_DRF_$Test__materials_tests_LessonTestCase_test_lesson_create.coverage" NAME="Test: materials.tests.LessonTestCase.test_lesson_create Coverage Results" MODIFIED="1722865576878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/project_DRF_$Test__materials_tests_LessonTestCase.coverage" NAME="Test: materials.tests.LessonTestCase Coverage Results" MODIFIED="1722864812954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/project_DRF_$Test__materials_tests_CourseTestCase_test_course_retrieve.coverage" NAME="Test: materials.tests.CourseTestCase.test_course_retrieve Coverage Results" MODIFIED="1722861406492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/project_DRF_$Test__materials_tests_CourseTestCase.coverage" NAME="Test: materials.tests.CourseTestCase Coverage Results" MODIFIED="1722872069934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/project_DRF_$Test__materials_tests_CourseTestCase_test_course_delete.coverage" NAME="Test: materials.tests.CourseTestCase.test_course_delete Coverage Results" MODIFIED="1722872038987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+</project>

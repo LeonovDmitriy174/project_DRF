@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from materials.models import Lesson, Course, Payment
+from materials.models import Lesson, Course, Payment, Subscription
 
 
 @admin.register(Lesson)
@@ -29,3 +29,10 @@ class PaymentAdmin(admin.ModelAdmin):
     )
     search_fields = ("course", "lesson")
     list_filter = ("user", "course", "lesson")
+
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ("user", "course", "status")
+    search_fields = ("course", "user")
+    list_filter = ("user", "course")

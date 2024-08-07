@@ -104,10 +104,9 @@ class SubscriptionTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_user_failed_to_subscribe_on_not_existing_course(self):
-        self.client.logout()
         self.user.subscription_set.create(course=self.course)
-        response = self.client.post(self.url, data={"course": self.course.pk})
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        response = self.client.post(self.url, data={"course": 999})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_user_have_to_subscribe_on_course(self):
         response = self.client.post(self.url, data={"course": self.course.pk})
