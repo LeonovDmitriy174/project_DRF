@@ -129,25 +129,16 @@ EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL")
 SERVER_EMAIL = EMAIL_HOST_USER
 FAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# URL-адрес брокера сообщений
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
-
-# URL-адрес брокера результатов, также Redis
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
-
-# Часовой пояс для работы Celery
 CELERY_TIMEZONE = TIME_ZONE
-
-# Флаг отслеживания выполнения задач
 CELERY_TASK_TRACK_STARTED = os.getenv("CELERY_TASK_TRACK_STARTED")
-
-# Максимальное время на выполнение задачи
 CELERY_TASK_TIME_LIMIT = 30 * 60
-
-# Настройки для Celery
-# CELERY_BEAT_SCHEDULE = {
-#     'task-name': {
-#         'task': 'myapp.tasks.my_task',  # Путь к задаче
-#         'schedule': timedelta(minutes=10),  # Расписание выполнения задачи (например, каждые 10 минут)
-#     },
-# }
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_BEAT_SCHEDULE = {
+    'check_last_login': {
+        'task': 'users.tasks.check_last_login',
+        'schedule': timedelta(minutes=1),
+    },
+}
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
